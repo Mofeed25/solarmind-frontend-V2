@@ -1,4 +1,5 @@
-const API_BASE_URL = "http://127.0.0.1:8000/api";
+// الرابط العالمي النهائي للباك إند المرفوع على Render
+const API_BASE_URL = "https://solarmind-backend-v5.onrender.com/api";
 
 async function fetchDashboardMetrics() {
     try {
