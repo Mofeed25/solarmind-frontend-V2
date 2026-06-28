@@ -2,35 +2,31 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>Solar Mind | لوحة التحكم الذكية</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Solar Mind | النظام الذكي</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="sidebar">
-        <div class="brand-logo"><i class="fa-solid fa-solar-panel"></i> Solar Mind</div>
+        <div class="brand-logo">☀️ Solar Mind</div>
         <ul class="menu-links">
-            <li class="active"><a href="#"><i class="fa-solid fa-gauge"></i> لوحة التحكم</a></li>
-            <li><a href="#"><i class="fa-solid fa-warehouse"></i> المخازن</a></li>
+            <li>لوحة التحكم الحية</li>
+            <li>تحليل المخزون</li>
+            <li>التقارير المالية</li>
         </ul>
+        <div class="footer-copy">© 2026 انديكيتورز للاستشارات</div>
     </div>
 
     <div class="main-content">
-        <div class="dashboard-header">
-            <!-- كروت المؤشرات مع الرسوم البيانية الصغيرة -->
-            <div class="metric-card"><canvas id="salesChart" width="50" height="50"></canvas><h3>المبيعات</h3><p id="sales-value">$0</p></div>
-            <div class="metric-card"><canvas id="profitChart" width="50" height="50"></canvas><h3>الأرباح</h3><p id="profit-value">$0</p></div>
+        <div class="metrics-grid">
+            <div class="card"><h3>إجمالي المبيعات</h3><p id="sales-value">جاري التحميل...</p></div>
+            <div class="card"><h3>صافي الأرباح</h3><p id="profit-value">جاري التحميل...</p></div>
+            <div class="card"><h3>حالة المخزون</h3><p>مستقر</p></div>
         </div>
-
-        <div class="chat-container">
-            <div class="chat-messages" id="chat-box">
-                <div class="message bot">أهلاً بك. أنا مستشارك المالي والإداري لـ Solar Mind، كيف يمكنني مساعدتك اليوم؟</div>
-            </div>
-            <div class="chat-input-area">
-                <input type="text" id="user-input" placeholder="اكتب استفسارك هنا...">
-                <button class="send-btn" onclick="sendChatMessage()"><i class="fa-solid fa-paper-plane"></i></button>
+        <div class="chat-window">
+            <div id="chat-box"></div>
+            <div class="input-area">
+                <input type="text" id="user-input" placeholder="اكتب سؤالك هنا...">
+                <button onclick="sendChatMessage()">إرسال</button>
             </div>
         </div>
     </div>
