@@ -1,14 +1,16 @@
-// الرابط العالمي النهائي للباك إند المرفوع على Render
-const API_BASE_URL = "https://solarmind-backend-v5.onrender.com/api";
+// الرابط الموحد للمستودع solarmind-backend-V2
+const API_BASE_URL = "https://solarmind-backend-v2.onrender.com/api";
 
 async function fetchDashboardMetrics() {
     try {
         const response = await fetch(`${API_BASE_URL}/metrics`);
+        if (!response.ok) throw new Error('Network response was not ok');
         const data = await response.json();
+        
         document.getElementById('sales-value').innerText = `$${data.total_sales.toLocaleString()}`;
         document.getElementById('profit-value').innerText = `$${data.total_profit.toLocaleString()}`;
     } catch (error) {
-        console.error("فشل جلب المؤشرات الحية:", error);
+        console.error("خطأ في الاتصال بالمستودع V2:", error);
     }
 }
 
@@ -30,9 +32,11 @@ async function sendChatMessage(customText = null) {
         const data = await response.json();
         processBotReply(data.reply);
     } catch (error) {
-        appendMessage("عذراً، واجه النظام مشكلة في الاتصال بالخادم المحمي.", 'bot');
+        appendMessage("عذراً، فشل الاتصال بخادم V2.", 'bot');
     }
 }
+
+// ... (بقية دوال appendMessage و processBotReply تبقى كما هي) ...
 
 function appendMessage(text, sender) {
     const chatBox = document.getElementById('chat-box');
@@ -47,7 +51,6 @@ function appendMessage(text, sender) {
 function processBotReply(replyText) {
     const buttonRegex = /\[BUTTONS:\s*(.*?)\s*\]/;
     const match = replyText.match(buttonRegex);
-    
     let cleanText = replyText.replace(buttonRegex, '').trim();
     const msgElement = appendMessage(cleanText, 'bot');
     
@@ -55,7 +58,6 @@ function processBotReply(replyText) {
         const buttonLabels = match[1].split('|').map(b => b.trim());
         const btnContainer = document.createElement('div');
         btnContainer.className = 'dynamic-buttons-container';
-        
         buttonLabels.forEach(label => {
             const btn = document.createElement('button');
             btn.className = 'interactive-btn';
@@ -63,7 +65,6 @@ function processBotReply(replyText) {
             btn.onclick = () => sendChatMessage(label);
             btnContainer.appendChild(btn);
         });
-        
         msgElement.appendChild(btnContainer);
         document.getElementById('chat-box').scrollTop = document.getElementById('chat-box').scrollHeight;
     }
