@@ -2,64 +2,38 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solar Mind | انديكيتورز للاستشارات</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>Solar Mind | لوحة التحكم الذكية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
     <div class="sidebar">
-        <div class="brand-section">
-            <div class="brand-logo"><i class="fa-solid fa-solar-panel"></i> Solar Mind</div>
-            <div class="brand-subtitle">نظام الاستشارة والتحليل الذكي</div>
-        </div>
+        <div class="brand-logo"><i class="fa-solid fa-solar-panel"></i> Solar Mind</div>
         <ul class="menu-links">
-            <li class="active"><a href="#"><i class="fa-solid fa-chart-pie"></i> لوحة التحكم الحية</a></li>
-            <li><a href="#"><i class="fa-solid fa-warehouse"></i> حركة المخازن</a></li>
-            <li><a href="#"><i class="fa-solid fa-receipt"></i> المبيعات والأرباح</a></li>
-            <li><a href="#"><i class="fa-solid fa-graduation-cap"></i> بوابة التعليم والموافقة</a></li>
+            <li class="active"><a href="#"><i class="fa-solid fa-gauge"></i> لوحة التحكم</a></li>
+            <li><a href="#"><i class="fa-solid fa-warehouse"></i> المخازن</a></li>
         </ul>
-        <div class="copyright-section">
-            <p>جميع الحقوق محفوظة © ٢٠٢٦</p>
-            <p style="font-weight: 600; color: #FFB703; margin-top: 2px;">انديكيتورز للاستشارات</p>
-        </div>
     </div>
 
     <div class="main-content">
         <div class="dashboard-header">
-            <div class="metric-card">
-                <div class="metric-info">
-                    <h3>إجمالي Mبيعات الحية</h3>
-                    <p id="sales-value">$0.00</p>
-                </div>
-                <div class="metric-icon"><i class="fa-solid fa-wallet"></i></div>
-            </div>
-            <div class="metric-card profit">
-                <div class="metric-info">
-                    <h3>صافي الأرباح الحالية</h3>
-                    <p id="profit-value">$0.00</p>
-                </div>
-                <div class="metric-icon"><i class="fa-solid fa-chart-line"></i></div>
-            </div>
+            <!-- كروت المؤشرات مع الرسوم البيانية الصغيرة -->
+            <div class="metric-card"><canvas id="salesChart" width="50" height="50"></canvas><h3>المبيعات</h3><p id="sales-value">$0</p></div>
+            <div class="metric-card"><canvas id="profitChart" width="50" height="50"></canvas><h3>الأرباح</h3><p id="profit-value">$0</p></div>
         </div>
 
         <div class="chat-container">
             <div class="chat-messages" id="chat-box">
-                <div class="message bot">
-                    أهلاً بك في نظام <b>Solar Mind</b> الاستشاري. أنا متصل الآن بقاعدة بيانات الشيت المحدثة لشركة <b>انديكيتورز للاستشارات</b>. كيف يمكنني مساعدتك اليوم؟
-                </div>
+                <div class="message bot">أهلاً بك. أنا مستشارك المالي والإداري لـ Solar Mind، كيف يمكنني مساعدتك اليوم؟</div>
             </div>
             <div class="chat-input-area">
-                <input type="text" id="user-input" placeholder="اسألني عن حركة المخازن، الألواح، أو الأرباح..." onkeypress="if(event.key === 'Enter') sendChatMessage()">
+                <input type="text" id="user-input" placeholder="اكتب استفسارك هنا...">
                 <button class="send-btn" onclick="sendChatMessage()"><i class="fa-solid fa-paper-plane"></i></button>
             </div>
         </div>
     </div>
-
     <script src="app.js"></script>
 </body>
 </html>
